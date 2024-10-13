@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #ccf2c3;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+input[type="text"] {
+    width: calc(100% - 105px);
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #4d694e;
+    color: white;
+    border-radius: 4px;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+.result img {
+    max-width: 100%;
+    margin-top: 20px;
+}

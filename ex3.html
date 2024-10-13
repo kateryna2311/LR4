@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пошук за номером авто</title>
+    <link rel="stylesheet" href="ex3.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Пошук автомобіля за номером</h2>
+        <form id="searchForm">
+            <input type="text" id="carNumber" placeholder="Введіть номер авто (напр. АО1234КО)" required>
+            <button type="submit">Шукати</button>
+        </form>
+        <p id="result"></p>
+        <p id="error-message" class="error-message"></p>
+    </div>
+    <script>
+        const regions = {
+            "AK": "АР Крим",
+            "AB": "Вінницька область",
+            "AC": "Волинська область",
+            "AE": "Дніпропетровська область",
+            "AH": "Донецька область",
+            "AM": "Житомирська область",
+            "АО": "Закарпатська область",
+            "AP": "Запорізька область",
+            "AT": "Івано-Франківська область",
+            "AI": "Київська область",
+            "AA": "м. Київ",
+            "BA": "Кіровоградська область",
+            "BB": "Луганська область",
+            "BC": "Львівська область",
+            "BE": "Миколаївська область",
+            "BH": "Одеська область",
+            "BI": "Полтавська область",
+            "BK": "Рівненська область",
+            "BM": "Сумська область",
+            "BO": "Тернопільська область",
+            "AX": "Харківська область",
+            "BT": "Херсонська область",
+            "BX": "Хмельницька область",
+            "CA": "Черкаська область",
+            "CB": "Чернігівська область",
+            "CE": "Чернівецька область",
+            "CH": "м. Севастополь"
+        };
+
+        document.getElementById("searchForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const carNumber = document.getElementById("carNumber").value.trim().toUpperCase();
+            const result2 = document.getElementById("result");
+            const errorMessage = document.getElementById("error-message");
+
+            result2.textContent = "";
+            errorMessage.textContent = "";
+
+            const regionCode = carNumber.slice(0, 2);
+            if (regions[regionCode]) {
+                result2.textContent = `Область реєстрації: ${regions[regionCode]}`;
+            } else {
+                errorMessage.textContent = "Область з цим кодом не знайдена або номер некоректний.";
+            }
+        });
+
+    </script>
+</body>
+</html>

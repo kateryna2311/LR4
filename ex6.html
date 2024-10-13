@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ex6.css">
+    <title>Реєстрація</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Реєстрація</h2>
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="username">Логін:</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" required>
+            </div>
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="agreement" required>
+                    Погоджуюсь з <a href = https://youtu.be/oHg5SJYRHA0>ліцензійною угодою</a>
+                </label>
+            </div>
+            <button type="submit">Зареєструватись</button>
+            <p id="error-message" class="error-message"></p>
+        </form>
+    </div>
+
+    <script>
+        const occupiedUsernames = ["admin", "user1", "testuser"];
+
+        document.getElementById("registrationForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const agreement = document.getElementById("agreement").checked;
+            const errorMessage = document.getElementById("error-message");
+
+            errorMessage.textContent = "";
+
+            if (password.length < 6) {
+                errorMessage.textContent = "Пароль повинен містити щонайменше 6 символів.";
+                return;
+            }
+
+            if (username === password) {
+                errorMessage.textContent = "Логін не може співпадати з паролем.";
+                return;
+            }
+
+            if (occupiedUsernames.includes(username)) {
+                errorMessage.textContent = "Цей логін вже зайнятий.";
+                return;
+            }
+
+            if (!agreement) {
+                errorMessage.textContent = "Необхідно погодитись з ліцензійною угодою.";
+                return;
+            }
+
+            alert("Реєстрація успішна!");
+        });
+
+    </script>
+</body>
+</html>

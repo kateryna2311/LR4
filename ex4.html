@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ex4.css">
+    <title>Форма Доставки</title>
+</head>
+<body>
+    <div class="container">
+        <form id="deliveryForm">
+            <div class="form-group">
+                <label for="cost">Вартість товару:</label>
+                <input type="number" id="cost" name="cost" required>
+            </div>
+            <div class="form-group">
+                <label for="weight">Маса товару (кг):</label>
+                <input type="number" id="weight" name="weight" required>
+            </div>
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="insurance">
+                    Страховка (2% від вартості)
+                </label>
+            </div>
+            <button type="submit">Обчислити вартість доставки</button>
+            <p id="totalCost" class="result"></p>
+        </form>
+    </div>
+    
+    <script>
+       document.getElementById("deliveryForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const cost = parseFloat(document.getElementById("cost").value);
+            const weight = parseFloat(document.getElementById("weight").value);
+            const insurance = document.getElementById("insurance").checked;
+            const totalCostElement = document.getElementById("totalCost");
+
+            let deliveryCost = 0;
+
+            if (weight <= 2) {
+                deliveryCost = 40;
+            } else if (weight <= 10) {
+                deliveryCost = 60;
+            } else if (weight <= 30) {
+                deliveryCost = 80;
+            } else {
+                deliveryCost = 80;
+            }
+
+            let insuranceCost = 0;
+            if (insurance) {
+                insuranceCost = cost * 0.02;
+            }
+
+            const totalCost = cost + deliveryCost + insuranceCost;
+            totalCostElement.textContent = `Загальна вартість доставки: ${totalCost.toFixed(2)} грн.`;
+        });
+
+    </script>
+</body>
+</html>

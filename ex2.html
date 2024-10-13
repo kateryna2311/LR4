@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пошук предмета</title>
+    <link rel="stylesheet" href="ex2.css"> <!-- Переконайтеся, що шлях правильний -->
+</head>
+<body>
+    <div class="container">
+        <form id="searchForm">
+            <input type="text" id="itemName" placeholder="Введіть назву предмета" required>
+            <button type="submit">Шукати</button>
+        </form>
+        <p id="error-message" class="error-message"></p>
+        <div id="result"></div>
+    </div> 
+    <script>
+        const items = [
+            { name: "duck", imageUrl: "items_img/duck.jpg"  },
+            { name: "cat", imageUrl: "items_img/cat.jpg" },
+            { name: "dog", imageUrl: "items_img/dog.jpg" },
+        ];
+
+        document.getElementById("searchForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const itemName = document.getElementById("itemName").value;
+            const result2 = document.getElementById("result");
+            const errorMessage = document.getElementById("error-message");
+
+            result2.innerHTML = "";
+            errorMessage.textContent = "";
+
+            const item = items.find(i => i.name.toLowerCase() === itemName.toLowerCase());
+
+            if (item) {
+                const img = document.createElement("img");
+                img.src = item.imageUrl;
+                img.alt = item.name;
+                result2.appendChild(img);
+            } else {
+                errorMessage.textContent = "Предмет не знайдено!";
+            }
+        });
+    </script>
+</body>
+</html>

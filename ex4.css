@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #ccf2c3;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="checkbox"] {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #4d694e;
+    color: white;
+    border-radius: 4px;
+}
+
+.result {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #4d694e;
+}

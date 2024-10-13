@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тренажер арифметичних операцій</title>
+    <link rel="stylesheet" href="ex5.css">
+</head>
+<body>
+    <div class="container">
+        <div id="quiz">
+            <p>First-number: <span id="first-number"></span></p>
+            <p>Operation: <span id="operation"></span></p>
+            <p>Second number: <span id="second-number"></span></p>
+            <p>Your answer: <input type="number" id="user-answer" required></p>
+            <button id="check-button">Check</button>
+            <p id="result-message"></p>
+        </div>
+    </div>
+    <script>
+        const operations = ['+', '-', '*'];
+
+        function generateRandomNumber() {
+            return Math.floor(Math.random() * 10) + 1;
+        }
+
+        function generateQuiz() {
+            const firstNumber = generateRandomNumber();
+            const secondNumber = generateRandomNumber();
+            const operation = operations[Math.floor(Math.random() * operations.length)];
+
+            document.getElementById('first-number').textContent = firstNumber;
+            document.getElementById('second-number').textContent = secondNumber;
+            document.getElementById('operation').textContent = operation;
+
+            return { firstNumber, secondNumber, operation };
+        }
+
+        let currentQuestion = generateQuiz();
+
+        document.getElementById('check-button').addEventListener('click', function() {
+            const userAnswer = parseInt(document.getElementById('user-answer').value);
+            let correctAnswer;
+
+            switch (currentQuestion.operation) {
+                case '+':
+                    correctAnswer = currentQuestion.firstNumber + currentQuestion.secondNumber;
+                    break;
+                case '-':
+                    correctAnswer = currentQuestion.firstNumber - currentQuestion.secondNumber;
+                    break;
+                case '*':
+                    correctAnswer = currentQuestion.firstNumber * currentQuestion.secondNumber;
+                    break;
+            }
+
+            if (userAnswer === correctAnswer) {
+                document.getElementById('result-message').textContent = "Result: OK";
+            } else {
+                document.getElementById('result-message').textContent = `:( Сorrect answer: ${correctAnswer}`;
+            }
+
+            currentQuestion = generateQuiz();
+            document.getElementById('user-answer').value = '';
+        });
+
+        generateQuiz();
+
+    </script>
+</body>
+</html>
+

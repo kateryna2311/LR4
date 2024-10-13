@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизація</title>
+    <link rel="stylesheet" href="log.css">
+</head>
+<body>
+    <div class="login-form">
+        <form id="authForm">
+            <div class="form-group">
+                <label for="login">Логін:</label>
+                <input type="text" id="login" name="login" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="rememberMe">
+                    Залишатись в системі
+                </label>
+            </div>
+            <button type="submit">Увійти</button>
+            <p id="error-message" class="error-message"></p>
+        </form>
+    </div>
+    <script src="log.js"></script>
+</body>
+</html>
