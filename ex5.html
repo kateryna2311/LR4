@@ -9,11 +9,12 @@
 <body>
     <div class="container">
         <div id="quiz">
-            <p>First-number: <span id="first-number"></span></p>
+            <p>First number: <span id="first-number"></span></p>
             <p>Operation: <span id="operation"></span></p>
             <p>Second number: <span id="second-number"></span></p>
             <p>Your answer: <input type="number" id="user-answer" required></p>
             <button id="check-button">Check</button>
+            <button id="new-quiz-button">New Quiz</button>
             <p id="result-message"></p>
         </div>
     </div>
@@ -32,6 +33,9 @@
             document.getElementById('first-number').textContent = firstNumber;
             document.getElementById('second-number').textContent = secondNumber;
             document.getElementById('operation').textContent = operation;
+
+            document.getElementById('result-message').textContent = '';
+            document.getElementById('user-answer').value = '';
 
             return { firstNumber, secondNumber, operation };
         }
@@ -57,16 +61,13 @@
             if (userAnswer === correctAnswer) {
                 document.getElementById('result-message').textContent = "Result: OK";
             } else {
-                document.getElementById('result-message').textContent = `:( Сorrect answer: ${correctAnswer}`;
+                document.getElementById('result-message').textContent = "wrong answer :(";
             }
-
-            currentQuestion = generateQuiz();
-            document.getElementById('user-answer').value = '';
         });
 
-        generateQuiz();
-
+        document.getElementById('new-quiz-button').addEventListener('click', function() {
+            currentQuestion = generateQuiz();
+        });
     </script>
 </body>
 </html>
-
