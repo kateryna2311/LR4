@@ -5,7 +5,11 @@ const validUsers = [
     { login: "log3", password: "p3" }
 ];
 
-function validateLogin(login, password) {
+function validateLogin(login) {
+    return validUsers.some(user => user.login === login);
+}
+
+function validatePassword(login, password) {
     return validUsers.some(user => user.login === login && user.password === password);
 }
 
@@ -17,11 +21,14 @@ document.getElementById("authForm").addEventListener("submit", function(event) {
     const rememberMe = document.getElementById("rememberMe").checked;
     const errorMessage = document.getElementById("error-message");
 
-    if (validateLogin(login, password)) {
-        errorMessage.textContent = "";
-        alert(`Успішний вхід! Залишатись в системі: ${rememberMe ? "Так" : "Ні"}`);
+    if (!validateLogin(login)) {
+        errorMessage.textContent = 'Неправильний логін';
+    } else if (!validatePassword(login, password)) {
+        errorMessage.textContent = 'Неправильний пароль';
     } else {
-        errorMessage.textContent = "Невірний логін або пароль";
+        errorMessage.textContent = '';
+        alert(`Успішний вхід! Залишатись в системі: ${rememberMe ? "Так" : "Ні"}`);
     }
 });
+
 
